@@ -1,6 +1,7 @@
 import "./App.css";
 import BorrowerModal from "./borrowerModal";
 import BookModal from "./bookModal";
+import CheckoutModal from "./checkoutModal";
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
       <div className="button-group">
         <BorrowerModal />
         <BookModal />
+        <CheckoutModal />
       </div>
     </div>
   );
