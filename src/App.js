@@ -1,23 +1,18 @@
-import logo from './logo.svg';
 import './App.css';
+import {Button} from "@mui/material"
+import {useState} from "react";
+import BorrowerModal from './borrowerModal';
 
 function App() {
+  const [openBorrower, setOpenBorrower] = useState(false)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='main-page'>
+      <div className='header'>Shelby's Library</div>
+      <div className='button-group'>
+        <Button id="buttons" variant='contained' onClick={()=>setOpenBorrower(true)}>Add Borrower</Button> 
+      </div>
+      <BorrowerModal open={openBorrower}/>
     </div>
   );
 }
