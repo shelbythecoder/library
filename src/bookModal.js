@@ -1,4 +1,15 @@
-import { Button, Modal, TextField, Typography } from "@mui/material";
+import {
+  Button,
+  Modal,
+  TextField,
+  Typography,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+  Checkbox,
+  FormControlLabel,
+} from "@mui/material";
 import { Box } from "@mui/system";
 import { useState } from "react";
 import $ from "jquery";
@@ -17,12 +28,31 @@ const style = {
   flexDirection: "column",
 };
 
+const genres = [
+  "Romance",
+  "Thriller",
+  "Historical Fiction",
+  "Non-Fiction",
+  "Contemporary",
+  "Fantasy",
+];
+
 const BookModal = () => {
   const [open, setOpen] = useState(false);
   const [bookInfo, updateBookInfo] = useState({
     title: "",
     author: "",
+    genre: [],
+    read: false,
   });
+
+  const handleChange = ({ target }) => {
+    const { value } = target;
+    updateBookInfo({
+      ...bookInfo,
+      genre: value,
+    });
+  };
 
   const setBookInfo = (key, value) => {
     updateBookInfo({ ...bookInfo, [key]: value });
@@ -78,6 +108,32 @@ const BookModal = () => {
               label="Author"
               variant="outlined"
               sx={{ margin: "4px" }}
+            />
+            <FormControl sx={{ margin: "4px", width: 190 }}>
+              <InputLabel id="demo-simple-select-label">Genre</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={bookInfo.genre}
+                onChange={handleChange}
+              >
+                {genres.map((genre) => (
+                  <MenuItem key={genre} value={genre}>
+                    {genre}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+            <FormControlLabel
+              sx={{ margin: 0, padding: 0 }}
+              control={
+                <Checkbox
+                  onChange={() =>
+                    setBookInfo({ ...bookInfo, read: !bookInfo.read })
+                  }
+                />
+              }
+              label="Read?"
             />
           </Typography>
           <Button

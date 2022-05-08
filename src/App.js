@@ -2,6 +2,7 @@ import "./App.css";
 import BorrowerModal from "./borrowerModal";
 import BookModal from "./bookModal";
 import CheckoutModal from "./checkoutModal";
+import CheckoutTable from "./checkoutTable";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <BookModal />
         <CheckoutModal />
       </div>
+      <CheckoutTable />
     </div>
   );
 }
